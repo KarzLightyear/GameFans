@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'homes/top'
-  end
   scope module: 'public' do
     root 'homes#top'
     get 'about', to: 'homes#about'
@@ -12,8 +9,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root 'admin/sessions#new'
-    resources :genres, only:[:index,:create,:edit,:update]
+    root 'homes#top'
+    resources :genres, only:[:index,:create,:edit,:update,:destroy]
   end
 
   devise_for :admin, controllers: {

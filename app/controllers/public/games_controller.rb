@@ -1,5 +1,6 @@
 class Public::GamesController < ApplicationController
   def index
+    @genres = Genre.all
   end
   
   def list
