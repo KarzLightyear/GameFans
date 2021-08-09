@@ -4,12 +4,21 @@
     <title>Gamefans</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/a334d13857.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
+  <header>
+    <%= render 'layouts/header' %>
+  </header>
 
   <body>
     <%= yield %>
   </body>
+  
+  <footer>
+    <%= render 'layouts/footer' %>
+  </footer>
 </html>
