@@ -33,7 +33,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
       t.string :name, null: false
       t.text :introduction
-      t.string :profile_image
+      t.string :profile_image_id
 
 
       t.timestamps null: false

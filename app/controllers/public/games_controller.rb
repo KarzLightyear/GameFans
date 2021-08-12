@@ -20,6 +20,7 @@ class Public::GamesController < ApplicationController
   end
   
   def show
+    @game = Genre.find(params[:id])
   end
   
   def edit
