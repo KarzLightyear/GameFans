@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
     resources :games, only:[:index,:new,:create,:show,:edit,:update,:destroy]
     resources :customers, only:[:index,:show,:edit,:update]
-    get 'list', to: 'games#list'
+    post 'games/:id' => 'games#show'
   end
 
   namespace :admin do
