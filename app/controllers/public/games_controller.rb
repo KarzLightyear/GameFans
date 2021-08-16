@@ -4,21 +4,27 @@ class Public::GamesController < ApplicationController
   end
 
   def create
+    
     @game = Game.new(game_params)
     @game.customer_id = current_customer.id
-    if @game.save
+    if @game.save!
+
       redirect_to game_path(@game), notice: "You have created game successfully."
     else
-      @games = Game.all
-      render 'games'
+      #@game = Game.find(params[:id])
+      #render template: "games/show"
     end
+  end
+
+  def new
+    @gamenew = Game.new
   end
 
   def show
     @gametitle = Genre.find(params[:id])
     @gamenew = Game.new
     @games = Game.all
-    #@game = Game.find(params[:id])
+    @game = Game.find(params[:id])
   end
 
   def edit
@@ -36,6 +42,6 @@ class Public::GamesController < ApplicationController
     params.require(:game).permit(:title, :body)
   end
 
-  
+
 
 end

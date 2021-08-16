@@ -55,13 +55,13 @@ ActiveRecord::Schema.define(version: 2021_08_08_125921) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.integer "genre_id", null: false
-    t.integer "customer_id", null: false
+    t.integer "genre_id"
+    t.integer "customer_id"
     t.string "title"
     t.text "body"
-    t.string "name", null: false
-    t.string "image", null: false
-    t.text "introduction", null: false
+    t.string "name"
+    t.string "image"
+    t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

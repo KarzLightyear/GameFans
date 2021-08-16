@@ -4,11 +4,48 @@
       <h2>customer info</h2>
       <%#= render 'customers/info', customer: @game.customer %>
       <h2 class="mt-3">New game</h2>
-      <%= render 'form', game: Game.new %>
+      <%#= render 'form', game: Game.new %>
+      <%= form_with model:@gamenew, local:true do |f| %>
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: 'form-control book_title' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :opinion %>
+          <%= f.text_area :body, class: 'form-control book_body' %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Post", class: 'btn btn-success' %>
+        </div>
+        <% f.label :genre_id %>
+      <% end %>
     </div>
 
     <div class='col-md-8 offset-md-1'>
   		<h2><%= @gametitle.name %></h2>
-  		<%= render 'show', games: @games%>
+  		<%#= render 'show', games: @games%>
+  		<table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @games.each do |game| %>
+            <tr>
+              <td>
+                <%= link_to customer_path(game.customer_id) do %>
+                <%#= attachment_image_tag(game.customer_id, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %>
+                <% end %>
+              </td>
+              <td><%= link_to @game.title, game_path(@game.id) %></td>
+              <td><%= @game.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
   </div>
 </div>
