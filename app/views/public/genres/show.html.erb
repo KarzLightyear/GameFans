@@ -5,7 +5,7 @@
       <%#= render 'customers/info', customer: @game.customer %>
       <h2 class="mt-3">New game</h2>
       <%#= render 'form', game: Game.new %>
-      <%= form_with model:@gamenew, local:true do |f| %>
+      <%= form_with model: Game.new, url:games_path(genre_id:@gametitle.id), local:true do |f| %>
         <div class="form-group">
           <%= f.label :title %>
           <%= f.text_field :title, class: 'form-control' %>
@@ -14,10 +14,11 @@
           <%= f.label :opinion %>
           <%= f.text_area :body, class: 'form-control' %>
         </div>
+        <% f.label :genre_id %>
+        <%= f.hidden_field :genre_id, :value => @gametitle.id %>
         <div class="form-group">
           <%= f.submit "Post", class: 'btn btn-success' %>
         </div>
-        <% f.label :genre_id %>
       <% end %>
     </div>
 
@@ -41,8 +42,8 @@
                 <%#= attachment_image_tag(game.customer_id, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %>
                 <% end %>
               </td>
-              <td><%= link_to @game.title, game_path(@game.id) %></td>
-              <td><%= @game.body %></td>
+              <td><%= link_to game.title, game_path(genre_id: @gametitle.id, id: game.id) %></td>
+              <td><%= game.body %></td>
             </tr>
           <% end %>
         </tbody>

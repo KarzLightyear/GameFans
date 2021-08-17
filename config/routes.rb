@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :admin, controllers: {
     sessions:      'admin/sessions',
     passwords:     'admin/passwords',
@@ -15,8 +15,14 @@ Rails.application.routes.draw do
   scope module: 'public' do
     root 'homes#top'
     get 'about', to: 'homes#about'
+    scope 'genres/:genre_id' do
+      resources :games, only:[:create,:show,:edit,:update,:destroy]
+    end
+#    scope 'genres/:genre_id/games/:game_id' do
+#      resources :comments, only[:create, :show, :edit, :update, :destroy]
+#    end
 
-    resources :games, only:[:index,:new,:create,:show,:edit,:update,:destroy]
+    resources :genres, only:[:index, :show]
     resources :customers, only:[:index,:show,:edit,:update]
     post 'games/:id' => 'games#show'
   end
@@ -26,5 +32,5 @@ Rails.application.routes.draw do
     resources :genres, only:[:index,:create,:edit,:update,:destroy]
   end
 
-  
+
 end
