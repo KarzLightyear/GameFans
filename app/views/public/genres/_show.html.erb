@@ -11,8 +11,8 @@
     <% @games.each do |game| %>
       <tr>
         <td>
-          <%= link_to customer_path(game.customer) do %>
-          <%= attachment_image_tag(game.customer, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %>
+          <%= link_to user_path(game.user) do %>
+          <%= attachment_image_tag(game.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %>
           <% end %>
         </td>
         <td><%= link_to @game.title, game_path(@game.id) %></td>

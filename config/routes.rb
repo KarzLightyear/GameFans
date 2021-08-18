@@ -6,10 +6,10 @@ Rails.application.routes.draw do
     registrations: 'admin/registrations'
   }
 
-  devise_for :customers, controllers: {
-    sessions:      'customers/sessions',
-    passwords:     'customers/passwords',
-    registrations: 'customers/registrations'
+  devise_for :users, controllers: {
+    sessions:      'users/sessions',
+    passwords:     'users/passwords',
+    registrations: 'users/registrations'
   }
 
   scope module: 'public' do
@@ -23,7 +23,11 @@ Rails.application.routes.draw do
 #    end
 
     resources :genres, only:[:index, :show]
-    resources :customers, only:[:index,:show,:edit,:update]
+    resources :users, only:[:index,:show,:edit,:update] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     post 'games/:id' => 'games#show'
   end
 

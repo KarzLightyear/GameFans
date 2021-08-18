@@ -5,7 +5,7 @@ class Public::GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-    @game.customer_id = current_customer.id
+    @game.user_id = current_user.id
     if @game.save!
 
       redirect_to genre_path(@game.genre_id), notice: "You have created game successfully."
@@ -20,6 +20,8 @@ class Public::GamesController < ApplicationController
   end
 
   def show
+    @game = Game.find(params[:id])
+    @game_comment = GameComment.new
   end
 
   def edit
