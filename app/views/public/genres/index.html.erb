@@ -1,7 +1,13 @@
-<h1>ゲーム一覧</h1>
-
-  <div class="d-flex flex-column bd-highlight mb-3">
-    <% @genres.each do |genre| %>
-      <%= link_to genre.name, genre_path(genre) %>
-    <% end %>
-  </end>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-12 align-middle'>
+      <h2>ゲーム一覧</h2>
+          <% @genres.each do |genre| %>
+            <li class='list-group-'>
+              <%= link_to genre.name, genre_path(genre) %>
+            </li>  
+          <% end %>
+        </table>
+    </div>
+  </div>
+</div>  

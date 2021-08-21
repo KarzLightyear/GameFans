@@ -11,7 +11,7 @@
           <!--カスタマーがログインしている時-->
             <li class="header-name">
               <p class="nav-link text-light">
-                ようこそ、<%= current_user.name %>さん！
+                <!--ようこそ、<%#= current_user.name %>さん！-->
               </p>
             </li>
             <li><%= link_to "Mypage", user_path(current_user), class: "fas fa-house-user nav-link text-light" %></li>

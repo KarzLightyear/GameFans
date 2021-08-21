@@ -21,9 +21,6 @@ Rails.application.routes.draw do
         resource :favorites, only: [:create, :destroy]
       end  
     end
-#    scope 'genres/:genre_id/games/:game_id' do
-#      resources :comments, only[:create, :show, :edit, :update, :destroy]
-#    end
 
     resources :genres, only:[:index, :show]
     resources :users, only:[:index,:show,:edit,:update] do
@@ -32,6 +29,11 @@ Rails.application.routes.draw do
       get 'followers' => 'relationships#followers', as: 'followers'
     end
     post 'games/:id' => 'games#show'
+    
+    resources :contacts, only: [:new, :create]
+    post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+    post 'contacts/back', to: 'contacts#back', as: 'back'
+    get 'done', to: 'contacts#done', as: 'done'
   end
 
   namespace :admin do
