@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(version: 2021_08_18_075803) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "book_id"
+    t.integer "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "game_comments", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "book_id"
+    t.integer "game_id"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_08_18_075803) do
 
   create_table "games", force: :cascade do |t|
     t.integer "genre_id"
-    t.integer "customer_id"
+    t.integer "user_id"
     t.string "title"
     t.text "body"
     t.string "name"

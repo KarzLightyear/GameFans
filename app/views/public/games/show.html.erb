@@ -3,15 +3,35 @@
     <div class='col-md-12'>
   		<h2>game detail</h2>
   		<table class='table'>
-  		  <tr id="game_<%= @game.id %>">
-  		    <td><%= link_to user_path(current_user) do %>
-            <%= attachment_image_tag(current_user, :profile_image, :fill, 100, 100, fallback: "no-image-icon.jpg") %>
+  		  <tr>
+  		    <td><%= link_to user_path(@game.user) do %>
+            <%= attachment_image_tag(@game.user, :profile_image, :fill, 100, 100, fallback: "no-image-icon.jpg") %>
             <% end %>
           </td>
           <td><%= current_user.name %></td>
-          <td><%= link_to @game.title, game_path(@game) %></td>
+          <td><%= @game.title %></td>
           <td><%= @game.body %></td>
+          <td>
+            <% if @game.user == current_user%>
+            <%= link_to 'Edit', edit_game_path(@game), class:'btn btn-sm btn-success' %>
+            <% end %>
+          </td>
+          <td>
+            <% if @game.user == current_user%>
+            <%= link_to 'Destroy', game_path(@game), method: :delete,  class:'btn btn-sm btn-danger' %>
+            <% end %>
+          </td>
+          <td>
+            <td id="favorite_btn<%= @game.id %>">
+              <%= render 'public/favorites/favorite_btn', game: @game %>
+            </td>
+          </td>
+          <td>コメント数：<%= @game.game_comments.count %></td>
+        </tr>
       </table>
+      <div class="comments">
+        <%= render 'public/games/comment', genre: @genre, game: @game,game_comment: @game_comment %>
+      </div>
     </div>
   </div>
 </div>

@@ -16,7 +16,10 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'about', to: 'homes#about'
     scope 'genres/:genre_id' do
-      resources :games, only:[:create,:show,:edit,:update,:destroy]
+      resources :games, only:[:create,:show,:edit,:update,:destroy] do
+        resources :game_comments, only: [:create, :destroy]
+        resource :favorites, only: [:create, :destroy]
+      end  
     end
 #    scope 'genres/:genre_id/games/:game_id' do
 #      resources :comments, only[:create, :show, :edit, :update, :destroy]

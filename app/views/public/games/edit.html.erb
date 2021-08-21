@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class='col-md-12'>
+      <div class='mb-3'>
+        <h2>Editing post</h2>
+        <% if @game.errors.any? %>
+          <p style="color: red;"><%= @game.errors.count %>errors prohibited this obj from being saved:</br>
+          <% @game.errors.full_messages.each do |message| %>
+            <%= message %>
+            </br>
+          <% end %>
+        <% end %>
+        <%=form_with model:@game, local:true do |f| %>
+            <label for="game_title">Title</label></br>
+            <%= f.text_field :title, class: "form-control title" %></br>
+
+            <label for="game_opinion">Opinion</label></br>
+            <%= f.text_area :body, class: "form-control body" %></br>
+            <%= f.submit 'Update post', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

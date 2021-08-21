@@ -22,15 +22,30 @@ class Public::GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @game_comment = GameComment.new
+    @genre = Genre.find(params[:genre_id])
   end
 
   def edit
+    @game = Game.find(params[:id])
+    if @game.user != current_user
+      redirect_to games_path
+    end
   end
 
   def update
+    @game = Game.find(params[:id])
+    if @game.update(game_params)
+      flash[:notice] = 'You have updated game successfully.'
+      redirect_to game_path(@game.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @game = Game.find(params[:id])
+    @game.destroy
+    redirect_to genres_path
   end
 
   private
