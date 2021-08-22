@@ -12,7 +12,7 @@ class Public::ContactsController < ApplicationController
       render :new
     end
   end
-  
+
   # 入力内容に誤りがあった場合、
   # 入力内容を保持したまま前のページに戻るのが当たり前になっているかと思いますが、
   # backアクションを定義することで可能となります。
@@ -28,7 +28,7 @@ class Public::ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     if @contact.save
       ContactMailer.send_mail(@contact).deliver_now
-      redirect_to done_path
+      redirect_to root_path
     else
       render :new
     end
@@ -42,11 +42,6 @@ class Public::ContactsController < ApplicationController
 
   def contact_params
     params.require(:contact)
-          .permit(:email,
-                  :name,
-                  :phone_number,
-                  :subject,
-                  :message
-                 )
+          .permit(:name, :subject, :message)
   end
 end
