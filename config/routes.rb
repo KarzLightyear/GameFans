@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-
   devise_for :admin, controllers: {
-    sessions:      'admin/sessions',
-    passwords:     'admin/passwords',
+    sessions: 'admin/sessions',
+    passwords: 'admin/passwords',
     registrations: 'admin/registrations'
   }
 
   devise_for :users, controllers: {
-    sessions:      'users/sessions',
-    passwords:     'users/passwords',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
     registrations: 'users/registrations'
   }
 
@@ -16,21 +15,21 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'about', to: 'homes#about'
     scope 'genres/:genre_id' do
-      resources :games, only:[:create,:show,:edit,:update,:destroy] do
-        resources :game_comments, only: [:create, :destroy]
-        resource :favorites, only: [:create, :destroy]
-      end  
+      resources :games, only: %i[create show edit update destroy] do
+        resources :game_comments, only: %i[create destroy]
+        resource :favorites, only: %i[create destroy]
+      end
     end
 
-    resources :genres, only:[:index, :show]
-    resources :users, only:[:index,:show,:edit,:update] do
-      resource :relationships, only: [:create, :destroy]
+    resources :genres, only: %i[index show]
+    resources :users, only: %i[index show edit update] do
+      resource :relationships, only: %i[create destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
     post 'games/:id' => 'games#show'
-    
-    resources :contacts, only: [:new, :create]
+
+    resources :contacts, only: %i[new create]
     post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
     post 'contacts/back', to: 'contacts#back', as: 'back'
     get 'done', to: 'contacts#done', as: 'done'
@@ -38,8 +37,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'homes#top'
-    resources :genres, only:[:index,:create,:edit,:update,:destroy]
+    resources :genres, only: %i[index create edit update destroy]
   end
-
-
 end

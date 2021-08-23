@@ -8,9 +8,7 @@ class Public::ContactsController < ApplicationController
   # 送信ボタンを押されたらcreateアクションを実行します。
   def confirm
     @contact = Contact.new(contact_params)
-    if @contact.invalid?
-      render :new
-    end
+    render :new if @contact.invalid?
   end
 
   # 入力内容に誤りがあった場合、
@@ -35,8 +33,7 @@ class Public::ContactsController < ApplicationController
   end
 
   # 送信完了画面を使用する場合お使いください。
-  def done
-  end
+  def done; end
 
   private
 

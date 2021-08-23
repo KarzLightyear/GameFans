@@ -8,10 +8,10 @@ class Public::GamesController < ApplicationController
     @game.user_id = current_user.id
     if @game.save!
 
-      redirect_to genre_path(@game.genre_id), notice: "You have created game successfully."
+      redirect_to genre_path(@game.genre_id), notice: 'You have created game successfully.'
     else
-      #@game = Game.find(params[:id])
-      #render template: "games/show"
+      # @game = Game.find(params[:id])
+      # render template: "games/show"
     end
   end
 
@@ -27,9 +27,7 @@ class Public::GamesController < ApplicationController
 
   def edit
     @game = Game.find(params[:id])
-    if @game.user != current_user
-      redirect_to games_path
-    end
+    redirect_to games_path if @game.user != current_user
   end
 
   def update
@@ -53,7 +51,4 @@ class Public::GamesController < ApplicationController
   def game_params
     params.require(:game).permit(:title, :body, :genre_id)
   end
-
-
-
 end

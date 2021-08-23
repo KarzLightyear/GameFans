@@ -58,7 +58,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  
+
   ## メールの配信方法
   ## :smtp     -- config.action_mailer.smtp_settingsで設定可能
   ## :sendmail -- config.action_mailer.sendmail_settingsで設定可能
@@ -69,28 +69,27 @@ Rails.application.configure do
   ## SMTPの設定
   config.action_mailer.smtp_settings = {
     ## SMTPサーバでSTARTTLSが有効かどうかを検出して有効にする
-    :enable_starttls_auto => true,
+    enable_starttls_auto: true,
 
     ## リモートメールサーバ
-    :address => 'smtp.gmail.com',
+    address: 'smtp.gmail.com',
 
     ## メールサーバのポート
-    :port => '587',
+    port: '587',
 
     ## HELOドメイン
-    :domain => 'smtp.gmail.com',
+    domain: 'smtp.gmail.com',
 
     ## メールサーバの認証が必要な場合の認証方法
     ## :plain    -- パスワードを平文で送信
     ## :login    -- パスワードをBase64でエンコード
     ## :cram_md5 -- チャレンジ/レスポンスによる情報交換と、MD5アルゴリズムによる重要情報のハッシュ化の組み合わせ
-    :authentication => 'plain',
+    authentication: 'plain',
 
     ## メールサーバの認証に使用するユーザ名
-    :user_name => 'k.k.yamato@gmail.com',
+    user_name: 'k.k.yamato@gmail.com',
 
     ## メールサーバの認証に使用するパスワード
-    :password => 'vcvkyskfjdapskwr'
+    password: 'vcvkyskfjdapskwr'
   }
-  
 end

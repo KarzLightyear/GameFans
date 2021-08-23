@@ -1,5 +1,4 @@
 class Public::GameCommentsController < ApplicationController
-
   def create
     @genre = Genre.find(params[:genre_id])
     @game = Game.find(params[:game_id])
@@ -11,7 +10,7 @@ class Public::GameCommentsController < ApplicationController
 
   def destroy
     @genre = Genre.find(params[:genre_id])
-  	@game = Game.find(params[:game_id])
+    @game = Game.find(params[:game_id])
     @game_comment = GameComment.find(params[:id])
     @game_comment.destroy
   end
@@ -21,5 +20,4 @@ class Public::GameCommentsController < ApplicationController
   def game_comment_params
     params.require(:game_comment).permit(:comment)
   end
-
 end

@@ -1,8 +1,6 @@
 class Public::UsersController < ApplicationController
-
   def index
     @users = User.all
-
   end
 
   def show
@@ -16,9 +14,9 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "You have updated user successfully."
+      redirect_to user_path(@user), notice: 'You have updated user successfully.'
     else
-      render "edit"
+      render 'edit'
     end
   end
 
@@ -27,5 +25,4 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
-
 end
