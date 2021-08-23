@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'searches/search'
+  end
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
     passwords: 'admin/passwords',
@@ -14,6 +17,7 @@ Rails.application.routes.draw do
   scope module: 'public' do
     root 'homes#top'
     get 'about', to: 'homes#about'
+    get 'searches/search'
     scope 'genres/:genre_id' do
       resources :games, only: %i[create show edit update destroy] do
         resources :game_comments, only: %i[create destroy]
