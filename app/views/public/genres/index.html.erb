@@ -1,12 +1,12 @@
 <div class='container px-5 px-sm-0 mt-3'>
   <h2>Game Titles</h2>
   <div class='row justify-content-center'>
-    <div class='list-grou-flush list-unstyled'>
-        <% @genres.each do |genre| %>
-          <li class='font-weight-bold mb-5'>
-            <%= link_to genre.name, genre_path(genre), class: "text-dark" %>
-          </li>
-        <% end %>
+    <div class='list-group-flush list-unstyled m-3'>
+      <% @genres.each do |genre| %>
+        <li class='font-weight-bold mb-4'>
+          <%= link_to genre.name, genre_path(genre), class: "text-dark" %>
+        </li>
+      <% end %>
     </div>
   </div>
 </div>
