@@ -13,15 +13,15 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="container">
-      <div class="row collapse navbar-collapse justify-content-between align-items-center" id="navbarNavDropdown">
+      <div class="row collapse navbar-collapse" id="navbarNavDropdown">
         <div class="collapse navbar-collapse border-bottom">
-          <div class="col-4 justify-content-start">
+          <ul class="col-4 navbar-nav justify-content-start">
             <p class="nav-link text-success">
               <% if user_signed_in? %>
               ようこそ、<%= current_user.name %>さん！
               <% end %>
             </p>
-          </div>
+          </ul>
           <ul class="col-4 navbar-nav justify-content-center">
             <% if user_signed_in? %>
               <!--カスタマーがログインしている時-->
@@ -46,9 +46,9 @@
               <li><%= link_to "ログイン", new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-success' %></li>
             <% end %>
           </ul>
-          <div class="col-4 justify-content-end ml-5">
+          <ul class="col-4 navbar-nav justify-content-end">
             <%= render 'public/searches/search_box' %>
-          </div>
+          </ul>
         </div>
       </div>
     </div>
