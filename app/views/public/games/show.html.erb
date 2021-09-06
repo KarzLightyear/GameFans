@@ -27,6 +27,9 @@
             </td>
           </td>
           <td>コメント数：<%= @game.game_comments.count %></td>
+          <td class="sentiment-score">
+            感情スコア：<%= @game.score %>
+          </td>
         </tr>
       </table>
       <div class="comments">

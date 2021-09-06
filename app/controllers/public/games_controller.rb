@@ -6,6 +6,7 @@ class Public::GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.user_id = current_user.id
+    @game.score = Language.get_data(game_params[:body])  #API機能の追加
     if @game.save!
 
       redirect_to genre_path(@game.genre_id), notice: 'You have created game successfully.'
