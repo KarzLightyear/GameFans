@@ -2,6 +2,15 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2 class="mt-3">New post</h2>
+      <% if @game.present? %>
+        <% if @game.errors.any? %>
+          <%= @game.errors.count %>件のエラーが発生しました
+          <% @game.errors.full_messages.each do |message| %>
+            <%= message %>
+          <% end %>
+        <% end %>
+      <% end %>
+      
       <%= form_with model: Game.new, url:games_path(genre_id:@gametitle.id), local:true do |f| %>
         <div class="form-group">
           <%= f.label :title %>
