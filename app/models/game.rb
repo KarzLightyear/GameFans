@@ -4,7 +4,7 @@ class Game < ApplicationRecord
 
   has_many :game_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+
   validates :title, presence: true
   validates :body, presence: true
 

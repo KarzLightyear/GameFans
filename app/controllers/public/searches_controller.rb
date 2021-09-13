@@ -1,10 +1,11 @@
 class Public::SearchesController < ApplicationController
   def search
-    @model = params["search"]["model"]
-    @value = params["search"]["value"]
-    @how = params["search"]["how"]
+    @model = params['search']['model']
+    @value = params['search']['value']
+    @how = params['search']['how']
     @datas = search_for(@how, @model, @value)
   end
+
   private
 
   def match(model, value)
@@ -17,25 +18,25 @@ class Public::SearchesController < ApplicationController
 
   def forward(model, value)
     if model == 'user'
-      User.where("name LIKE ?", "#{value}%")
+      User.where('name LIKE ?', "#{value}%")
     elsif model == 'genre'
-      Genre.where("name LIKE ?", "#{value}%")
+      Genre.where('name LIKE ?', "#{value}%")
     end
   end
 
   def backward(model, value)
     if model == 'user'
-      User.where("name LIKE ?", "%#{value}")
+      User.where('name LIKE ?', "%#{value}")
     elsif model == 'genre'
-      Genre.where("name LIKE ?", "%#{value}")
+      Genre.where('name LIKE ?', "%#{value}")
     end
   end
 
   def partical(model, value)
     if model == 'user'
-      User.where("name LIKE ?", "%#{value}%")
+      User.where('name LIKE ?', "%#{value}%")
     elsif model == 'genre'
-      Genre.where("name LIKE ?", "%#{value}%")
+      Genre.where('name LIKE ?', "%#{value}%")
     end
   end
 
