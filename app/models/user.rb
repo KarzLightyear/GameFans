@@ -11,10 +11,10 @@ class User < ApplicationRecord
   has_many :followers, through: :reverce_of_relationships, source: :follower
   has_many :game_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+
   def active_for_authentication?
     super &&
-      !!(self.is_deleted == false)
+      !!(is_deleted == false)
   end
 
   def follow(user_id)
