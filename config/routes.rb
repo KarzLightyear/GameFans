@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       resource :relationships, only: %i[create destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+      put '/users/:id/hide' => 'users#hide', as: 'users_hide'
     end
     post 'games/:id' => 'games#show'
 

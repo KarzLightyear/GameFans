@@ -17,7 +17,12 @@
         <%= f.text_area :introduction, class: "form-control introduction" %>
       </div>
       <div class="form-group">
-        <%= f.submit class: 'btn btn-success' %>
+        <%= f.submit '更新する', class: 'btn btn-success' %>
+      </div>
+      <div>
+        <% if user_signed_in? && @user.id == current_user.id %>
+          <%= link_to "退会する", user_users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger" %>
+        <% end %>
       </div>
     <% end %>
   </div>
